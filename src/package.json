@@ -1,0 +1,11 @@
+{
+  "name": "node-learning-basic-concepts",
+  "version": "1.0.0",
+  "description": "Learning basic concepts to create a rest api in node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jean Carlos M. da Silva",
+  "license": "ISC"
+}
