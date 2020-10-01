@@ -1,35 +1,22 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const mongodbContext = require("./mongo/context")
 
-const connectionString = ""
-const options = {
-    poolSize: 5,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}
-
-mongoose.connect(connectionString, options);
-mongoose.set("useCreateIndex", true);
-
-mongoose.connection.on("error", (err) => {
-    console.error("Error connecting to database" + err);
-});
-
-mongoose.connection.on("disconnected", () => {
-    console.log("App disconnected from mongo atlas");
-});
+mongodbContext.use();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const indexRoute = require("./routes/index")
 const usersRoute = require("./routes/users")
+const authRoute = require("./routes/auth");
 
 app.use("/", indexRoute);
 app.use("/users", usersRoute);
+app.use("/auth", authRoute);
+
 
 app.listen(3000);
 
